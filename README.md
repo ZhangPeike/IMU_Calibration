@@ -6,8 +6,5 @@ External Equipments*
 ## 2. Use
 0. Read the paper, get the fig.1, do it and record IMU data
 1. IMU data format
-`timestamp(s) ax(m/s2) ay az gx(rad/s) gy gz`
+`timestamp(us) ax(g) ay az gx(degree/s) gy gz`
 2. Run script
-```matlab
-
-```
