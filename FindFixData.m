@@ -1,7 +1,5 @@
 function [fix_point, rotation] = FindFixData(cal, threshold)
 
-    % author  Zhang Xin
-
     n = size(cal, 1);
     j = 1;
 
@@ -34,7 +32,7 @@ function [fix_point, rotation] = FindFixData(cal, threshold)
 
     for i = 1:size(P, 1) - 1
         % if P(i,2)-P(i,1)>20
-        if P(i, 2) - P(i, 1) > 1.5
+        if P(i, 2) - P(i, 1) > 50
             PP(j, 1) = P(i, 1);
             PP(j, 2) = P(i, 2);
             fix_point(j, :) = mean(cal(PP(j, 1):PP(j, 2), 2:7), 1);
@@ -49,13 +47,15 @@ function [fix_point, rotation] = FindFixData(cal, threshold)
     end
 
     figure
-    plot(1:n, norm_gyro, 'b.')
+    plot(1:n, norm_gyro, 'b')
 
     for j = 1:size(PP, 1)
         hold on
-        plot(PP(j, 1), norm_gyro(PP(j, 1)), 'ro');
+        plot(PP(j, 1), norm_gyro(PP(j, 1)), 'r+');
         hold on
-        plot(PP(j, 2), norm_gyro(PP(j, 2)), 'ko');
+        plot(PP(j, 2), norm_gyro(PP(j, 2)), 'gx');
     end
+
+    legend('start', 'end');
 
 end

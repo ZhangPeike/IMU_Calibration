@@ -5,10 +5,9 @@ function [Ta,Ka,Ba,Tg,Kg,Bg]=ImuCalibration(data)
 %  cal_gyro=Tg*Kg*(raw_gyro+Bg)
 %  cal_mag=Tm2a*(raw_mag+Bm)
 %
-% author  Zhang Xin
 
 % for caldata.dat 30
-[fix_point,rotation]=FindFixData(data,0.03);
+[fix_point,rotation]=FindFixData(data,0.05);
 
 [Ta,Ka,Ba]=AccCalibration(fix_point);
 
