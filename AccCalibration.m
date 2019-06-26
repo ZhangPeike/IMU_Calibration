@@ -3,7 +3,7 @@ function [Ta, Ka, Ba, axis] = AccCalibration(fix_point, a0)
     % calibration without External Equipments
     if nargin < 2
         %    a0=[0,0,0,0.0048,0.0048,0.0048,0,0,0];
-        a0 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        a0 = [0, 0, 0, 1, 1, 1, 0, 0, 0];
     end
 
     B = fix_point(:, 1:3) - ones(size(fix_point, 1), 1) * (mean(fix_point(:, 1:3), 1));

@@ -32,13 +32,13 @@ function [fix_point, rotation] = FindFixData(cal, threshold)
 
     for i = 1:size(P, 1) - 1
         % if P(i,2)-P(i,1)>20
-        if P(i, 2) - P(i, 1) > 50
+        if P(i, 2) - P(i, 1) > 300
             PP(j, 1) = P(i, 1);
             PP(j, 2) = P(i, 2);
             fix_point(j, :) = mean(cal(PP(j, 1):PP(j, 2), 2:7), 1);
 
             if j >= 2
-                rotation{j - 1, 1} = cal(PP(j - 1, 2) - 10:PP(j, 1) + 10, :);
+                rotation{j - 1, 1} = cal(PP(j - 1, 2) - 50:PP(j, 1) + 50, :);
             end
 
             j = j + 1;
@@ -51,11 +51,11 @@ function [fix_point, rotation] = FindFixData(cal, threshold)
 
     for j = 1:size(PP, 1)
         hold on
-        plot(PP(j, 1), norm_gyro(PP(j, 1)), 'r+');
+        plot(PP(j, 1), norm_gyro(PP(j, 1)), 'ro');
         hold on
-        plot(PP(j, 2), norm_gyro(PP(j, 2)), 'gx');
+        plot(PP(j, 2), norm_gyro(PP(j, 2)), 'b*');
     end
-
-    legend('start', 'end');
+    legend('gyro norm', 'start', 'end');
+    
 
 end

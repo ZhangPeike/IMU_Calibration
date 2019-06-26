@@ -3,7 +3,7 @@ function [Tg, Kg] = GyroCalibration(rotation, a0)
     % calibration without External Equipments
 
     if nargin < 2
-        a0 = [0, 0, 0, 0, 0, 0, 0.001, 0.001, 0.001];
+        a0 = [0, 0, 0, 0, 0, 0, 1, 1, 1];
     end
 
     % options=optimset('Algorithm','Levenberg-Marquardt',...
@@ -42,7 +42,7 @@ function E = rotation_gyro(a, rotation)
 
         for j = 2:size(data, 1)
             gyro0 = Tg * Kg * (data(j - 1, 5:7)' + Bg);
-            gyro1 = Tg * Kg * (data(j, 5:7)' + Bg);
+             gyro1 = Tg * Kg * (data(j, 5:7)' + Bg);
             dt = (data(j, 1) - data(j - 1, 1));
             Q(:, j) = attitude_update_RK4(Q(:, j - 1), dt, gyro0, gyro1);
         end
